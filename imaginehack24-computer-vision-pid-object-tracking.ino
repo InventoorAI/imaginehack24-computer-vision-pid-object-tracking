@@ -100,7 +100,7 @@ void motorControl(double control){
 
   }
   control = fabs(control);
-  int control_int = (int) control;
+  int control_int = (int) control *0.8;
   analogWrite(M1_PWM, (control_int + basespeed));
   analogWrite(M2_PWM, (control_int + basespeed));
   analogWrite(M3_PWM, (control_int + basespeed));
@@ -137,7 +137,7 @@ void loop() {
   xPos = serial_retrieve();
   error = -xPos;
   
-  if(abs(error) <= 10){
+  if(abs(error) <= 60){
     digitalWrite(trigPin, LOW);
     delayMicroseconds(2);
     // Sets the trigPin on HIGH state for 10 micro seconds
